@@ -452,7 +452,7 @@ papplSystemRun(pappl_system_t *system)	// I - System
   papplSystemAddResourceData(system, "/navicon.png", "image/png", icon_sm_png, sizeof(icon_sm_png));
   papplSystemAddResourceString(system, "/style.css", "text/css", style_css);
 
-  if ((system->options & PAPPL_SOPTIONS_WEB_LOG) && system->log_file && strcmp(system->log_file, "-") && strcmp(system->log_file, "syslog"))
+  if ((system->options & PAPPL_SOPTIONS_WEB_LOG) && system->log_file && (strcmp(system->log_file, "-") || strcmp(system->log_file, "syslog")))
   {
     papplSystemAddResourceCallback(system, "/logfile.txt", "text/plain", (pappl_resource_cb_t)_papplSystemWebLogFile, system);
     papplSystemAddResourceCallback(system, "/logs", "text/html", (pappl_resource_cb_t)_papplSystemWebLogs, system);
